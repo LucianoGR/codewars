@@ -1,0 +1,43 @@
+#código feito pelo Claude
+
+from collections import Counter
+
+def first_non_repeating_letter(s):
+    contagem = Counter(s.lower())
+    for letra in s:
+        if contagem[letra.lower()] == 1:
+            return letra
+    return ""
+
+teste = "aab"
+
+print(first_non_repeating_letter(teste) + " resposta do Claude")
+
+def first_non_repeating_letter2(s):
+    
+    indice = 1
+    vistos = set()
+    
+    if len(s) == 1:
+        return s
+    
+    if s == "" or s.count(s[0]) == len(s):
+        return ""
+
+    for letra in s:
+        if letra.isalpha():
+            if letra.lower() not in s[indice:].lower() and (letra or letra.lower()) not in vistos:
+                return letra
+                
+            indice = indice + 1
+        
+        else:
+            if letra not in s[indice:] and letra not in vistos:
+                return letra
+                
+            indice = indice + 1
+        vistos.add(letra)
+            
+    return ""
+
+print(first_non_repeating_letter2(teste) + " resposta do Luciano")

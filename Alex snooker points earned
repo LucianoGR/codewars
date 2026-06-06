@@ -1,0 +1,33 @@
+def frame(balls):
+
+    import re
+    blz = {'R':1,'Y':2,'G':3, 'Bn':4, 'Be':5, 'P':6, 'Bk':7 }
+
+    clean_set = re.findall(r'(B.|[A-Z])(\d*)',balls)
+
+    soma = 0
+
+    if 'W' in balls:
+        return 'Foul'
+
+    for cor,numero in clean_set:
+        if numero == '':
+            soma += blz[cor]
+        else:
+            soma += blz[cor] * int(numero)
+
+    if soma > 147:
+        return 'invalid data'
+
+    return soma
+
+
+entrada = 'R15P3G1Bk4Y1Bn1Be3'
+entrada2 = 'R13Bk14YRGBnBkRBePBk1'
+entrada3 = 'G9G11P9Bn2Bn1Be10G7WBn10G3'
+entrada4 = 'Bn14Bn14Bn8P9'
+
+print(frame(entrada))
+print(frame(entrada2))
+print(frame(entrada3))
+print(frame(entrada4))
